@@ -1,0 +1,37 @@
+[
+  {
+    "dimension": "talk_ratio",
+    "evidence": "[Demo] 本堂課總時長 105 秒，教師發話約 96 秒（91%），學生發話約 4 秒（4%），過渡 5%。",
+    "interpretation": "Flanders (1970) FIAC 將教師發話 > 70% 的課堂歸為「講述型」。本堂課 91% 高度集中於教師端，顯示為以講述為主的傳遞式教學。學生少有機會口語化自己的理解。",
+    "suggestion": "下次可在第 18 秒「固態的水我們叫什麼」之後刻意停 3 秒，並改問「你覺得固態的水可能是什麼樣子？」（OPEN 題型），把至少 30% 的時間還給學生。",
+    "citation": "Flanders, N. A. (1970). Analyzing Teaching Behavior. Addison-Wesley."
+  },
+  {
+    "dimension": "wait_time",
+    "evidence": "[Demo] 本堂課 4 個提問中，3 次（75%）等待時間 < 1 秒；最短 0.4 秒（00:38「為什麼水會在這三種狀態之間變化呢」）。",
+    "interpretation": "Rowe (1972, 1986) 等待時間研究指出，提問後若 < 1 秒就追問或自答，學生回答長度、推論性回答、學生間互動量均顯著偏低。本堂課 75% 提問落入此區間，可能限制了學生思考深度。",
+    "suggestion": "建議實驗：選 2 個關鍵提問，刻意默數 3 秒後再追問。例如「為什麼水會在這三種狀態之間變化呢」後加一句「沒關係慢慢想，先在心裡想 3 秒」降低學生焦慮。",
+    "citation": "Rowe, M. B. (1986). Wait time: Slowing down may be a way of speeding up. Journal of Teacher Education, 37(1), 43-50."
+  },
+  {
+    "dimension": "question_types",
+    "evidence": "[Demo] 4 個提問中，3 個為封閉題（「固態的水叫什麼」「誰可以舉一個例子」「會發生什麼事」），1 個為開放題（「為什麼水會變化」）。",
+    "interpretation": "Wragg & Brown (2001) 指出，開放題與追問是啟動高階思考的主要途徑。本堂課開放題占比 25%，仍以事實回憶為主。",
+    "suggestion": "可將「煮開水」這個學生回應，從接受改為追問：「你說煮開水會冒水蒸氣，那為什麼是水蒸氣不是別的？」這個 IRF 追問會把學生帶入解釋層次。",
+    "citation": "Wragg, E. C., & Brown, G. (2001). Questioning in the Primary School. Routledge."
+  },
+  {
+    "dimension": "bloom",
+    "evidence": "[Demo] 提問層級分布：L1 記憶 3 次、L2 理解 1 次、L3-L6 各 0 次。",
+    "interpretation": "Anderson & Krathwohl (2001) 修訂版 Bloom 框架中，高階思考（L4 分析、L5 評鑑、L6 創造）對深度學習至關重要。本堂課完全集中於 L1-L2，缺乏分析、評鑑、創造類提問。",
+    "suggestion": "在水分子排列圖（73 秒）之後，可加一個 L4 提問：「比較三種狀態下水分子的差異，你覺得『溫度』影響的是分子的什麼？」這會促使學生分析、推論。",
+    "citation": "Anderson, L. W., & Krathwohl, D. R. (2001). A Taxonomy for Learning, Teaching, and Assessing. Longman."
+  },
+  {
+    "dimension": "dialogue_pattern",
+    "evidence": "[Demo] 本堂課呈現典型 IRE 模式：教師提問 → 學生短回應 → 教師評價（「對」「很好」）並接續講授，共 4 次。無 IRF 追問、無 Dialogic 學生接續。",
+    "interpretation": "Mehan (1979) IRE Sequence 是傳統教學中最常見的結構，但 Wells (1999) 指出 Dialogic Inquiry（學生間相互回應、共同建構意義）才是促進深度學習的關鍵。本堂課缺少學生 ↔ 學生互動。",
+    "suggestion": "下次可在學生回應「煮開水」後，將提問交給其他學生：「有人同意他的看法嗎？」或「誰可以再補充？」這個小改變會啟動學生間的對話鍊。",
+    "citation": "Mehan, H. (1979). Learning Lessons. Harvard University Press; Wells, G. (1999). Dialogic Inquiry. Cambridge University Press."
+  }
+]

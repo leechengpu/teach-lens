@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+data/*.db
+data/*.sqlite
+data/audio/
+.streamlit/secrets.toml
+.DS_Store
+*.swp
+.idea/
+.vscode/
+tests/demo_audio/*.mp3
+tests/demo_audio/*.wav
+tests/demo_audio/*.m4a
+!tests/demo_audio/README.md
