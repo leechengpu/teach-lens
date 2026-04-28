@@ -37,16 +37,27 @@ def _call_json(system_prompt: str, user_content: str, model: str = MODEL_FAST) -
     """呼叫 Claude 並解析 JSON 回應（容錯：抽 ```json 區塊）"""
     response = _client().messages.create(
         model=model,
-        max_tokens=4096,
+        max_tokens=8192,
         system=system_prompt,
         messages=[{"role": "user", "content": user_content}],
     )
-    text = response.content[0].text
-    # 嘗試抽出 ```json 區塊
+    if not response.content:
+        raise RuntimeError(
+            f"Claude 回空 content。model={model}, stop_reason={response.stop_reason}, "
+            f"usage={response.usage}"
+        )
+    raw_text = response.content[0].text
+    text = raw_text
     match = re.search(r"```(?:json)?\s*(.*?)```", text, re.DOTALL)
     if match:
         text = match.group(1)
-    return json.loads(text.strip())
+    text = text.strip()
+    if not text:
+        raise RuntimeError(
+            f"Claude 回空字串。model={model}, stop_reason={response.stop_reason}, "
+            f"raw 前 500 字={raw_text[:500]!r}"
+        )
+    return json.loads(text)
 
 
 # === 任務 1：事件分段 ===
