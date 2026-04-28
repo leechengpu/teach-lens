@@ -57,7 +57,15 @@ def _call_json(system_prompt: str, user_content: str, model: str = MODEL_FAST) -
             f"Claude 回空字串。model={model}, stop_reason={response.stop_reason}, "
             f"raw 前 500 字={raw_text[:500]!r}"
         )
-    return json.loads(text)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as e:
+        raise RuntimeError(
+            f"Claude 回的內容無法解析為 JSON。model={model}, "
+            f"stop_reason={response.stop_reason}, "
+            f"strip 後前 500 字={text[:500]!r}, "
+            f"raw 前 1000 字={raw_text[:1000]!r}"
+        ) from e
 
 
 # === 任務 1：事件分段 ===
