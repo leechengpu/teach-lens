@@ -224,6 +224,23 @@ h3 { font-size: 20px !important; line-height: 1.35 !important; }
   gap: 48px;
   align-items: center;
 }
+/* 窄寬時 hero 改 single column；preview card 移到下方 */
+@media (max-width: 1100px) {
+  .tl-hero-inner {
+    grid-template-columns: 1fr;
+    padding: 56px 28px 72px;
+    gap: 36px;
+  }
+  .tl-hero h1 { font-size: 44px !important; }
+  .tl-hero-preview-card { transform: none !important; max-width: 480px; margin: 0 auto; }
+  .tl-hero-floating { display: none; }
+}
+@media (max-width: 720px) {
+  .tl-hero h1 { font-size: 34px !important; }
+  .tl-bullets { grid-template-columns: 1fr !important; }
+  .tl-cta-row { flex-direction: column; }
+  .tl-cta-row > a { width: 100%; justify-content: center; }
+}
 
 .tl-badge {
   display: inline-flex; align-items: center; gap: 10px;

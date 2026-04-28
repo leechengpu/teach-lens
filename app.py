@@ -9,7 +9,7 @@ st.set_page_config(
     page_title="教學透鏡 TeachLens",
     page_icon="🔍",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 db.ensure_db_initialized()
