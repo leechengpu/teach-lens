@@ -37,7 +37,7 @@ def _call_json(system_prompt: str, user_content: str, model: str = MODEL_FAST) -
     """呼叫 Claude 並解析 JSON 回應（容錯：抽 ```json 區塊）"""
     response = _client().messages.create(
         model=model,
-        max_tokens=8192,
+        max_tokens=32768,
         system=system_prompt,
         messages=[{"role": "user", "content": user_content}],
     )
@@ -45,6 +45,12 @@ def _call_json(system_prompt: str, user_content: str, model: str = MODEL_FAST) -
         raise RuntimeError(
             f"Claude 回空 content。model={model}, stop_reason={response.stop_reason}, "
             f"usage={response.usage}"
+        )
+    if response.stop_reason == "max_tokens":
+        raise RuntimeError(
+            f"Claude 回應超過 max_tokens 上限被截斷（音檔 segment 過多）。"
+            f"model={model}, max_tokens=32768, usage={response.usage}。"
+            f"建議：改用較短音檔（< 40 分鐘），或切批處理。"
         )
     raw_text = response.content[0].text
     text = raw_text
