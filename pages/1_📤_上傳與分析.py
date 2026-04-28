@@ -102,6 +102,7 @@ if uploaded and consent and nickname and title:
         except Exception as e:
             progress.empty()
             st.error(f"❌ 分析失敗：{e}")
+            st.exception(e)
 elif consent and uploaded and not (nickname and title):
     st.warning("請填妥教師暱稱與課堂標題後才能開始分析")
 elif uploaded and not consent:
