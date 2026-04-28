@@ -34,25 +34,28 @@ def _client():
 
 
 def _call_json(system_prompt: str, user_content: str, model: str = MODEL_FAST) -> list | dict:
-    """呼叫 Claude 並解析 JSON 回應（容錯：抽 ```json 區塊）"""
-    response = _client().messages.create(
+    """呼叫 Claude（streaming 模式）並解析 JSON 回應（容錯：抽 ```json 區塊）"""
+    raw_text = ""
+    with _client().messages.stream(
         model=model,
         max_tokens=32768,
         system=system_prompt,
         messages=[{"role": "user", "content": user_content}],
-    )
-    if not response.content:
-        raise RuntimeError(
-            f"Claude 回空 content。model={model}, stop_reason={response.stop_reason}, "
-            f"usage={response.usage}"
-        )
-    if response.stop_reason == "max_tokens":
+    ) as stream:
+        for chunk in stream.text_stream:
+            raw_text += chunk
+        final_message = stream.get_final_message()
+    if final_message.stop_reason == "max_tokens":
         raise RuntimeError(
             f"Claude 回應超過 max_tokens 上限被截斷（音檔 segment 過多）。"
-            f"model={model}, max_tokens=32768, usage={response.usage}。"
-            f"建議：改用較短音檔（< 40 分鐘），或切批處理。"
+            f"model={model}, max_tokens=32768, usage={final_message.usage}。"
+            f"建議:改用較短音檔（< 40 分鐘）,或切批處理。"
         )
-    raw_text = response.content[0].text
+    if not raw_text:
+        raise RuntimeError(
+            f"Claude 回空字串。model={model}, stop_reason={final_message.stop_reason}, "
+            f"usage={final_message.usage}"
+        )
     text = raw_text
     match = re.search(r"```(?:json)?\s*(.*?)```", text, re.DOTALL)
     if match:
@@ -60,7 +63,7 @@ def _call_json(system_prompt: str, user_content: str, model: str = MODEL_FAST) -
     text = text.strip()
     if not text:
         raise RuntimeError(
-            f"Claude 回空字串。model={model}, stop_reason={response.stop_reason}, "
+            f"Claude 回空字串。model={model}, stop_reason={final_message.stop_reason}, "
             f"raw 前 500 字={raw_text[:500]!r}"
         )
     try:
